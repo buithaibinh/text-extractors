@@ -26,7 +26,7 @@ describe.skip('must crawl fromUrl correct', function () {
   it('should get data when url is html', async function () {
     let url =
       'https://vnexpress.net/3-canh-sat-danh-thieu-nien-bi-tuoc-danh-hieu-cong-an-nhan-dan-4517610.html';
-    const opt = {
+    const opt: any = {
       ignoreImage: true,
       preserveNewlines: true,
       wordwrap: false,

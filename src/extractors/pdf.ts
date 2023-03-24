@@ -1,18 +1,32 @@
 // import * as pdf from 'pdf-parse';
-const pdf = require('pdf-parse');
+import * as pdfParser from 'pdf-parse';
 
-interface PdfParseOptions {
-  max?: number;
-}
+
+const DEFAULT_OPTIONS = {
+  // https://mozilla.github.io/pdf.js/api/
+  pagerender: {
+    //replaces all occurrences of whitespace with standard spaces (0x20). The default value is `false`.
+    normalizeWhitespace: false,
+    //do not attempt to combine same line TextItem's. The default value is `false`.
+    disableCombineTextItems: false,
+  },
+
+  //max number of pages to parse
+  max: 0,
+  //check https://mozilla.github.io/pdf.js/getting_started/
+  version: 'v1.10.100',
+};
 
 const extractText = async (
   data: Buffer,
   _mimeType: string,
-  opt: PdfParseOptions = {
-    max: 0, // 0 means no limit
-  }
+  options: any = {}
 ) => {
-  const res = await pdf(data, opt);
+  const opt = {
+    ...DEFAULT_OPTIONS,
+    ...options.pdf,
+  };
+  const res = await pdfParser(data, opt);
   if (res) {
     return res.text;
   }
