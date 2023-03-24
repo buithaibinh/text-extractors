@@ -22,7 +22,6 @@ const extractText = async (
   options: any = {}
 ) => {
   const opt = {
-    ...DEFAULT_OPTIONS,
     ...options.pdf,
   };
   const res = await pdfParser(data, opt);
