@@ -10,7 +10,7 @@ const DEFAULT_OPTIONS = {
     disableCombineTextItems: false,
   },
 
-  //max number of pages to parse
+  //max number of pages to parse, default is all pages
   max: 0,
   //check https://mozilla.github.io/pdf.js/getting_started/
   version: 'v1.10.100',
@@ -22,6 +22,7 @@ const extractText = async (
   options: any = {}
 ) => {
   const opt = {
+    ...DEFAULT_OPTIONS,
     ...options.pdf,
   };
   const res = await pdfParser(data, opt);
