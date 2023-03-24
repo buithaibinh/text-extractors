@@ -1,4 +1,4 @@
-# @sk-global/text-extractor
+# text-extractors
 
 A text extractor for extracting text from HTML, PDF, Image and other files.
 
@@ -12,7 +12,7 @@ A text extractor for extracting text from HTML, PDF, Image and other files.
 ## Installation
 
 ```bash
-npm install @sk-global/text-extractor
+npm install text-extractors
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ npm install @sk-global/text-extractor
 CommonJS
 
 ```js
-const { fromUrl, fromBufferWithMimeType, fromBuffer } = require('@sk-global/text-extractor');
+const { fromUrl, fromBufferWithMimeType, fromBuffer } = require('text-extractors');
 
 // fromUrl
 const text = await fromUrl('https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/d6cfdcdd-75e4-460c-9ec0-af4f952e03d5/20210906_meeting_promoting_01.pdf');
@@ -35,7 +35,7 @@ const text = await fromBuffer(buffer);
 ES6
 
 ```js
-import { fromUrl, fromBufferWithMimeType, fromBuffer } from '@sk-global/text-extractor';
+import { fromUrl, fromBufferWithMimeType, fromBuffer } from 'text-extractors';
 
 ```
 
