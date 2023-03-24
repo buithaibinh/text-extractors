@@ -1,6 +1,5 @@
 // import * as pdf from 'pdf-parse';
-import * as pdfParser from 'pdf-parse';
-
+const pdfParser = require('pdf-parse');
 
 const DEFAULT_OPTIONS = {
   // https://mozilla.github.io/pdf.js/api/
