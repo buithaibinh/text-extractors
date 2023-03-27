@@ -57,7 +57,7 @@
     "html-to-text": "^8.2.1",
     "iconv-lite": "^0.6.3",
     "pdfjs-dist": "^3.4.120",
-    "tesseract.js": "^3.0.3"
+    "tesseract.js": "^4.0.2"
   },
   "repository": {
     "type": "git",
