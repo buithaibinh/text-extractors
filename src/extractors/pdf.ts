@@ -7,9 +7,13 @@ const extractText = async (
 ) => {
   const pdfOptions = options.pdf || {
     max: 0,
+    standardFontDataUrl: null,
   };
 
-  const loadingTask = pdfjsLib.getDocument(data);
+  const loadingTask = pdfjsLib.getDocument({
+    data: data,
+    standardFontDataUrl: pdfOptions.standardFontDataUrl,
+  });
 
   const pdf = await loadingTask.promise;
   // PDF loaded successfully
