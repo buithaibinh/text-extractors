@@ -7,12 +7,13 @@ const extractText = async (
 ) => {
   const pdfOptions = options.pdf || {
     max: 0,
+    workerSrc: null,
   };
 
   // Disable workers to avoid yet another cross-origin issue (workers need
   // the URL of the script to be loaded, and dynamically loading a cross-origin
   // script does not work).
-  pdfjsLib.GlobalWorkerOptions.workerPort = null; // Disable workerPort option
+  pdfjsLib.GlobalWorkerOptions.workerSrc = pdfOptions.workerSrc;
 
   const loadingTask = pdfjsLib.getDocument(data);
 
