@@ -1,4 +1,4 @@
-import { getDocument } from 'pdfjs-dist';
+import * as pdfjsLib from 'pdfjs-dist';
 
 const extractText = async (
   data: Buffer,
@@ -9,7 +9,12 @@ const extractText = async (
     max: 0,
   };
 
-  const loadingTask = getDocument(data);
+  // Disable workers to avoid yet another cross-origin issue (workers need
+  // the URL of the script to be loaded, and dynamically loading a cross-origin
+  // script does not work).
+  pdfjsLib.GlobalWorkerOptions.workerPort = null; // Disable workerPort option
+
+  const loadingTask = pdfjsLib.getDocument(data);
 
   const pdf = await loadingTask.promise;
   // PDF loaded successfully
