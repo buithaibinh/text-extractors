@@ -1,7 +1,6 @@
 
  interface PdfParseOptions {
   max?: number;
-  workerSrc?: string;
 }
 
 
