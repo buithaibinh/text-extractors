@@ -24,9 +24,21 @@ const extractText = async (
   for (let i = 1; i <= counter; i++) {
     let page = await pdf.getPage(i);
     let content = await page.getTextContent();
-    text += content.items.map((item: any) => item.str).join('');
+
+    const items = content.items;
+    let prevY = null;
+    for (let j = 0; j < items.length; j++) {
+      const item: any = items[j];
+      // add a line break after each text item if the next item has a lower y coordinate value than the current item.
+      if (prevY !== null && item.transform[5] < prevY) {
+        text += '\n';
+      }
+      text += item.str;
+      prevY = item.transform[5];
+    }
   }
 
+  console.log('pdf text', text);
   return text;
 };
 
