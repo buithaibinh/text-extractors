@@ -38,7 +38,6 @@ const extractText = async (
     }
   }
 
-  console.log('pdf text', text);
   return text;
 };
 
