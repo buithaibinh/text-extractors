@@ -2,8 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import extract from './extract';
 import { ExtractorOptions } from './types';
 
-import { detectFileTypeByBuffer,  } from './utils';
-
+import { detectFileTypeByBuffer } from './utils';
 
 const fromBufferWithMimeType = async (
   data: Buffer,
@@ -33,10 +32,10 @@ const fromUrl = async ({
   axiosConfig?: AxiosRequestConfig;
 }): Promise<string> => {
   const instance = axios.create();
-
+  console.log('axiosConfig', axiosConfig);
   let requestConfig: AxiosRequestConfig = {
     url: url,
-    method: 'get',
+    method: axiosConfig.method || 'get',
     baseURL: '',
     transformResponse: [
       async (data: any, headers: any) => {
@@ -49,6 +48,7 @@ const fromUrl = async ({
     headers: {
       'User-Agent':
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36',
+      ...axiosConfig.headers,
     },
     timeout: 40000,
     withCredentials: false,

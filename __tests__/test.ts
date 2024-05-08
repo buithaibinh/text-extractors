@@ -88,7 +88,7 @@ describe.skip('test image', () => {
 });
 
 describe('test pdf', () => {
-  it('test local file pdf', async () => {
+  it.skip('test local file pdf', async () => {
     // TODO: replace with your own file path
     let file = fs.readFileSync(path.join(__dirname, 'sample.pdf'));
     const res = await fromBuffer(file, {});
@@ -96,10 +96,10 @@ describe('test pdf', () => {
     expect(res).not.toBeNull();
   });
 
-  it.skip('test remote file pdf', async () => {
+  it('test remote file pdf', async () => {
     let url = 'https://www.orixlife.co.jp/about/notice/2022/pdf/n220921.pdf';
     const res = await fromUrl({ url });
-    // console.log(res);
+    console.log(res);
     expect(res).not.toBe('');
   });
 });
