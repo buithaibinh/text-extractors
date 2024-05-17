@@ -3,7 +3,7 @@ import { fromUrl, fromBufferWithMimeType, fromBuffer } from '../src/index';
 import * as path from 'path';
 import * as fs from 'fs';
 
-describe.skip('must crawl fromUrl correct', function () {
+describe('must crawl fromUrl correct', function () {
   it.skip('should set error when url is not found', async function () {
     let url = 'https://www.google.com/404';
     try {
@@ -23,7 +23,7 @@ describe.skip('must crawl fromUrl correct', function () {
     expect(res).not.toBe('');
   });
 
-  it('should get data when url is html', async function () {
+  it.skip('should get data when url is html', async function () {
     let url =
       'https://vnexpress.net/3-canh-sat-danh-thieu-nien-bi-tuoc-danh-hieu-cong-an-nhan-dan-4517610.html';
     const opt: any = {
@@ -36,6 +36,30 @@ describe.skip('must crawl fromUrl correct', function () {
       ignoreHref: true,
     };
     const res = await fromUrl({ url, option: opt });
+    console.log(res);
+    expect(res).not.toBe('');
+  });
+
+  // test basic auth
+  it.skip('should get data when url is html with basic auth', async function () {
+    let url = 'https://app-dev.crawler.uni-voice.biz/tasks/iFJTpwC-rFPYlaUjDXG7f?tab=input';
+    const res = await fromUrl({
+      url,
+      axiosConfig: {
+        auth: {
+          username: 'demo',
+          password: '12345678',
+        },
+      },
+    });
+    console.log(res);
+    expect(res).not.toBe('');
+  });
+
+  // test with no html tag
+  it.skip('should get data when url is html with no html tag', async function () {
+    let url = 'https://setagaya-bousai.my.site.com/';
+    const res = await fromUrl({ url });
     console.log(res);
     expect(res).not.toBe('');
   });
@@ -97,7 +121,7 @@ describe('test pdf', () => {
   });
 
   it('test remote file pdf', async () => {
-    let url = 'https://www.orixlife.co.jp/about/notice/2022/pdf/n220921.pdf';
+    let url = 'https://www.orixlife.co.jp/about/news/2023/pdf/n240209.pdf';
     const res = await fromUrl({ url });
     console.log(res);
     expect(res).not.toBe('');

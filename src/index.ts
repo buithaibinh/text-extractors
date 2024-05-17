@@ -4,6 +4,8 @@ import { ExtractorOptions } from './types';
 
 import { detectFileTypeByBuffer } from './utils';
 
+const instance = axios.create();
+
 const fromBufferWithMimeType = async (
   data: Buffer,
   mimeType: string,
@@ -31,7 +33,6 @@ const fromUrl = async ({
   option?: ExtractorOptions;
   axiosConfig?: AxiosRequestConfig;
 }): Promise<string> => {
-  const instance = axios.create();
   console.log('axiosConfig', axiosConfig);
   let requestConfig: AxiosRequestConfig = {
     url: url,
@@ -57,13 +58,14 @@ const fromUrl = async ({
     },
     maxRedirects: 5,
     ...axiosConfig,
+    auth: axiosConfig.auth,
     responseType: 'arraybuffer', //'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
     maxContentLength: 20000000,
   };
 
   return instance.request(requestConfig).then((res) => {
     return res.data;
-  });
+  })
 };
 
 export { fromUrl, fromBuffer, fromBufferWithMimeType };

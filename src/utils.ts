@@ -6,9 +6,17 @@ export const detectFileTypeByBuffer = (
   return new Promise((resolve, reject) => {
     fromBuffer(data, (err: any, result: any) => {
       if (err) {
-        reject(err);
+        reject({
+          ext: '',
+          mime: 'application/octet-stream',
+        });
       } else {
-        resolve(result);
+        const mimeResult = result || {
+          mime: 'text/html',
+          ext: 'html',
+        }
+        console.log('result', mimeResult);
+        resolve(mimeResult);
       }
     });
   });
