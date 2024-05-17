@@ -58,14 +58,13 @@ const fromUrl = async ({
     },
     maxRedirects: 5,
     ...axiosConfig,
-    auth: axiosConfig.auth,
     responseType: 'arraybuffer', //'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
     maxContentLength: 20000000,
   };
 
   return instance.request(requestConfig).then((res) => {
     return res.data;
-  })
+  });
 };
 
 export { fromUrl, fromBuffer, fromBufferWithMimeType };

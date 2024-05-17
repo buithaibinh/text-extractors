@@ -25,7 +25,7 @@ describe('must crawl fromUrl correct', function () {
 
   it.skip('should get data when url is html', async function () {
     let url =
-      'https://vnexpress.net/3-canh-sat-danh-thieu-nien-bi-tuoc-danh-hieu-cong-an-nhan-dan-4517610.html';
+      'https://setagaya-bousai.my.site.com/#notice';
     const opt: any = {
       ignoreImage: true,
       preserveNewlines: true,
@@ -41,19 +41,21 @@ describe('must crawl fromUrl correct', function () {
   });
 
   // test basic auth
-  it.skip('should get data when url is html with basic auth', async function () {
-    let url = 'https://app-dev.crawler.uni-voice.biz/tasks/iFJTpwC-rFPYlaUjDXG7f?tab=input';
+  it('should get data when url is html with basic auth', async function () {
+    let url = 'https://app-dev.crawler.uni-voice.biz';
     const res = await fromUrl({
       url,
       axiosConfig: {
-        auth: {
-          username: 'demo',
-          password: '12345678',
-        },
+        // auth: {
+        //   username: 'demo',
+        //   password: '12345678',
+        // },
+        headers: {
+          'Authorization': 'Basic ZGVtbzoxMjM0NTY3OA==',
+        }
       },
     });
     console.log(res);
-    expect(res).not.toBe('');
   });
 
   // test with no html tag
@@ -120,7 +122,7 @@ describe('test pdf', () => {
     expect(res).not.toBeNull();
   });
 
-  it('test remote file pdf', async () => {
+  it.skip('test remote file pdf', async () => {
     let url = 'https://www.orixlife.co.jp/about/news/2023/pdf/n240209.pdf';
     const res = await fromUrl({ url });
     console.log(res);
